@@ -1,0 +1,240 @@
+<div style="color: white">
+  <h1><strong>Evaluación</strong></h1>
+  <div class="row">
+    <div class="card" style="background-color: #003d74">
+      <div class="card-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputSol">Tipo Solicitud</label>
+              <input
+                #inputSol
+                [value]="answer.request.__data__.request_type"
+                type="text"
+                class="form-control"
+                id="inputSol"
+                readonly
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputDev">Programador Encargado</label>
+              <input
+                #inputDev
+                [value]="answer.dev.__data__.name"
+                type="text"
+                class="form-control"
+                id="inputDev"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputDescription">Descripción</label>
+            <textarea
+              #inputDescription
+              [value]="answer.request.__data__.description"
+              class="form-control"
+              name="description"
+              id="inputDescription"
+              cols="15"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputFiles">Adjuntar Archivos</label>
+              <button
+                class="btn btn-secondary"
+                type="button"
+                id="button-addon2"
+                data-toggle="modal"
+                data-target="#filesModal"
+              >
+                Subir Archivos
+              </button>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputCot">Costo Aproximado</label>
+              <div class="input-group mb-3">
+                <input
+                  #inputCot
+                  [value]="cotization"
+                  type="number"
+                  class="form-control"
+                  id="inputCot"
+                  aria-describedby="button-addon2"
+                  readonly
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    id="button-addon"
+                    data-toggle="modal"
+                    data-target="#cotModal"
+                  >
+                    Definir
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <button class="btn btn-danger" (click)="cancelEvaluation()">
+                Cancelar
+              </button>
+            </div>
+            <div class="spacer"></div>
+            <div class="form-group col-md-2" id="btnSend">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="saveEvaluation(inputDescription.value)"
+              >
+                Enviar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="cotModal"
+  tabindex="-1"
+  aria-labelledby="cotModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cotModalLabel">
+          Desglose de Costo Aproximado
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--Table Test-->
+        <table>
+          <thead>
+            <button
+              class="btn btn-dark"
+              type="button"
+              id="plus"
+              (click)="onAddRow()"
+              *ngIf="addForm.get('rows')"
+            >
+              Agregar
+            </button>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let row of addForm.get('rows')?.controls;
+                let index = index
+              "
+            >
+              <td>
+                <input
+                  [formControl]="row.get('description')"
+                  placeholder="Descripcion"
+                  style="color: black"
+                  class="form-control"
+                />
+              </td>
+              <td>
+                <input
+                  [formControl]="row.get('value')"
+                  placeholder="Valor"
+                  style="color: black"
+                  type="number"
+                  class="form-control"
+                />
+              </td>
+              <td>
+                <button
+                  class="btn btn-danger btn-sm"
+                  type="button"
+                  (click)="onRemoveRow(index)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--Table Test-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveCotization()"
+          data-dismiss="modal"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Files Modal-->
+<div
+  class="modal fade"
+  id="filesModal"
+  tabindex="-1"
+  aria-labelledby="filesModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="filesModalLabel">Subir Archivos</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <angular-file-uploader
+              [config]="afuConfig"
+              (ApiResponse)="DocUpload($event)"
+              name="file"
+            >
+            </angular-file-uploader>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

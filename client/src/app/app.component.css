@@ -1,0 +1,89 @@
+/* 
+color-pallete:
+  blue-font: #001223 
+  blue-main: #003d74
+  blue-btn: #237acc
+  white: #fbfbfb
+  red: #cf2c2c
+  grey: #bcc5d0
+*/
+:host {
+  font-family: BrandonText, BrandonBold;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+label {
+  font-size: 19px;
+}
+
+.ico-space {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.form-control {
+  background-color: #001223;
+  border: none;
+}
+
+.toolbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #003d74;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.toolbar img {
+  margin: 0 16px;
+}
+
+.toolbar #twitter-logo {
+  height: 40px;
+  margin: 0 16px;
+}
+
+.toolbar #twitter-logo:hover {
+  opacity: 0.8;
+}
+
+.content {
+  display: flex;
+  margin: 15px auto 10px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.content h1 {
+  margin-left: -370px !important;
+}

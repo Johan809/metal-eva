@@ -1,0 +1,13 @@
+@font-face {
+  font-family: BrandonText;
+  src: url("./assets/BrandonText-Regular.otf");
+}
+@font-face {
+  font-family: BrandonBold;
+  src: url("./assets/BrandonText-Bold.otf");
+}
+
+body {
+  background-color: #001223;
+  font-family: BrandonText, BrandonBold;
+}

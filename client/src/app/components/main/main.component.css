@@ -1,0 +1,83 @@
+/* 
+color-pallete:
+  blue-font: #001223 
+  blue-main: #003d74
+  blue-btn: #237acc
+  white: #fbfbfb
+  red: #cf2c2c
+  grey: #bcc5d0
+*/
+:host {
+  font-family: BrandonText, BrandonBold;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+input,
+textarea,
+input:hover,
+textarea:hover {
+  color: white;
+}
+
+label {
+  font-size: 19px;
+}
+
+#btnSend {
+  padding-left: 25px;
+}
+
+.ico-space {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.form-control {
+  background-color: #001223;
+  border: none;
+}
+
+.resetBtn[_ngcontent-fkn-c40] {
+  margin-left: 3px;
+  margin-bottom: 8px;
+}
+
+.modal-input {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+}
+
+.content {
+  display: flex;
+  margin: 25px auto 10px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.content h1 {
+  margin-left: -370px !important;
+}
